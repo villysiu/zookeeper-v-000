@@ -1,0 +1,2 @@
+module DailyHealthsHelper
+end
