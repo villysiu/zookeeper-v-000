@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :daily_healths
+  resources :health_checkups
   resources :animals
+  resources :exhibits
+
  # devise_for :users
  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 authenticated :user do

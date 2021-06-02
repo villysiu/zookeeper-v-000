@@ -1,0 +1,25 @@
+<%= form_for(@animal) do |f| %>
+    <p>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :deceased %><br>
+      <%= f.check_box :deceased %>
+    </p>
+    <p>
+      <%= f.label :exhibit %><br>
+      <%= f.collection_select :exhibit_id, Exhibit.all, :id, :name %>
+      <br>
+      <%= f.label "or create a new exhibit" %>
+      <%= f.fields_for :exhibit do |ff| %>
+        
+        <%= ff.text_field :name %>
+      <% end %>
+    </p>
+    
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+  
