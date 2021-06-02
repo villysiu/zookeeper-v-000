@@ -10,14 +10,16 @@ class AnimalsController < ApplicationController
     end
     def show
         @animal = Animal.find(params[:id])
+    @health_checkup = HealthCheckup.new
+
 
     end
     def new
         @animal = Animal.new
-        @animal.build_exhibit
+       # @animal.build_exhibit
     end
     def create
-        puts "hellp"
+        
         @animal = Animal.create(animal_params)
         puts animal_params
         redirect_to @animal
@@ -26,7 +28,10 @@ class AnimalsController < ApplicationController
         @animal = Animal.find(params[:id])
       end
       def update
+        # Parameters: {"authenticity_token"=>"[FILTERED]", "animal"=>{"name"=>"Peter rabbit", "deceased"=>"0", "exhibit_id"=>"2", "exhibit_attributes"=>{"name"=>""}}, "commit"=>"Update Animal", "id"=>"1"}
         @animal = Animal.find(params[:id])
+      
+        puts animal_params
         @animal.update(animal_params)
         if @animal.errors.messages != {}
           render :edit

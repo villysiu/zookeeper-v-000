@@ -12,11 +12,12 @@
       <%= f.collection_select :exhibit_id, Exhibit.all, :id, :name %>
       <br>
       <%= f.label "or create a new exhibit" %>
-      <%= f.fields_for :exhibit do |ff| %>
-        
-        <%= ff.text_field :name %>
-      <% end %>
-    </p>
+
+        <%= f.fields_for :exhibit, @animal.build_exhibit do |exhibit_fields| %>
+            <%= exhibit_fields.text_field :name %>
+        <% end %>
+
+     
     
     <p>
       <%= f.submit %>

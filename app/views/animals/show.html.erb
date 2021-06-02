@@ -1,1 +1,25 @@
-<h2><%= @animal.name %>
+<h2><%= @animal.name %></h2> 
+<%= link_to "edit", edit_animal_path%>
+Status: <%=  @animal.deceased ? "Deceased" : "Alive" %><br>
+Exhibit: <%= @animal.exhibit.name %>
+
+
+  <%= render "health_checkups/form", health_checkup: HealthCheckup.new %>
+
+
+
+<% if HealthCheckup.any? %>
+<p>Previous checkup </p>
+  <% HealthCheckup.all.each do |c| %>
+    <li><p> <%= c.comments %> </p>
+    by <%= c.user.name %> on <%= c.date.to_formatted_s(:long) %>
+      <% if current_user == c.user %>
+        <%= link_to "delete", c, method: :delete %>
+      <% end %>
+    </li>
+  <% end %>
+<% end %>
+
+
+
+

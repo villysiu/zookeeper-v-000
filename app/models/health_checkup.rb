@@ -1,4 +1,7 @@
-class HelpCheckup < ApplicationRecord
-    has_many :animals
-    has_many :users
+class HealthCheckup < ApplicationRecord
+    belongs_to :animal
+    belongs_to :user
+
+   
+    
 end
