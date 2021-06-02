@@ -10,7 +10,7 @@ Exhibit: <%= @animal.exhibit.name %>
 
 <% if HealthCheckup.any? %>
 <p>Previous checkup </p>
-  <% HealthCheckup.all.each do |c| %>
+<% @animal.health_checkups.each do |c| %>
     <li><p> <%= c.comments %> </p>
     by <%= c.user.name %> on <%= c.date.to_formatted_s(:long) %>
       <% if current_user == c.user %>

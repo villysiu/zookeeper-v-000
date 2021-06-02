@@ -14,7 +14,7 @@ class HealthCheckupsController < ApplicationController
       private
     
       def health_checkup_params
-        params.require(:health_checkup).permit(:comments, :animal_id, :user_id)
+        params.require(:health_checkup).permit(:comments, :animal_id, :user_id, :date)
       end
     
 end
