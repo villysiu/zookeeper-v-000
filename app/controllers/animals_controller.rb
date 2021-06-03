@@ -30,7 +30,6 @@ class AnimalsController < ApplicationController
         @animal.update(animal_params)
         if @animal.valid?
           redirect_to @animal
-          
         else
           render :edit
         end

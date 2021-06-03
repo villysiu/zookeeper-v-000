@@ -16,11 +16,13 @@ class Animal < ApplicationRecord
         if exhibit.valid?
             self.exhibit = exhibit 
         else
-
-            e = Exhibit.where(exhibit_attribute)
-puts e
-            exhibit.errors.full_messages.each do |message| 
-                puts message 
+            e = Exhibit.find_case_insensitive_exhibit(exhibit_attribute[:name])
+            if e.valid?
+                self.exhibit = e
+            else
+                exhibit.errors.full_messages.each do |message| 
+                    puts message 
+                end
              end 
         end
     end
