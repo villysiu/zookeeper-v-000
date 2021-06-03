@@ -1,0 +1,19 @@
+<% if @health_checkups.any? %>
+  <h3>Health Records for <%= link_to @animal.name, animal_path(@animal)%></h3>
+  <% @health_checkups.order('date DESC').each do |c| %>
+      <table><tr>
+        <td><%= c.comments %> </td>
+        <td>by <%= c.user.name %> on <%= c.date.to_formatted_s(:long) %></td>
+        <td>
+          <% if current_user == c.user %>
+            <%= link_to "edit", edit_health_checkup_path(c) %>
+            <%= link_to 'Delete', c, method: :delete %>
+          <% end %>
+        </td>
+      </tr></table>
+    <% end %>
+<% else %>
+    No check up yet. Please perform first
+    
+<% end %>
+<%= link_to "health check up", new_animal_health_checkup_path(@animal) %></p>

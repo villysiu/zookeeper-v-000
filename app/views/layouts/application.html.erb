@@ -14,17 +14,22 @@
   <body>
   <h1> Zookeeper </h1>
   <% if user_signed_in? %>
-  <h3>Hello <%= current_user.name %>
-  <%= link_to "Edit profile", edit_user_registration_path %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path  %> |
-  <%= link_to "Login", new_user_session_path  %>
-  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
+  
+    <h3>Hello 
+    <%= current_user.name ||= current_user.email %>
+    <%= link_to "Edit profile", edit_user_registration_path %> |
+    <%= link_to "Logout", destroy_user_session_path, method: :delete  %> 
+    <p><%= link_to "New Animal", new_animal_path %>   <%= link_to "See all Animals", animals_path %></p>
+
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path  %> |
+    <%= link_to "Login", new_user_session_path  %> | 
+    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
 
 <% end %>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
+
     <%= yield %>
   </body>
 </html>

@@ -1,28 +1,24 @@
 class AnimalsController < ApplicationController
     def index
-        @animals = Animal.all
-        
-        if !@animals.any?
-            redirect_to new_animal_path, notice: "No animal. Please add new animal"
-        end
-      
-        
+        @animals = Animal.all    
+        redirect_to new_animal_path, notice: "No animal. Please add new animal" if !@animals.any?
+
     end
     def show
         @animal = Animal.find(params[:id])
-    @health_checkup = HealthCheckup.new
-
-
     end
     def new
         @animal = Animal.new
-       # @animal.build_exhibit
     end
     def create
-        
         @animal = Animal.create(animal_params)
-        puts animal_params
-        redirect_to @animal
+        if @animal.valid?
+          redirect_to @animal
+          
+        else
+          render :new
+        end
+        
     end
     def edit
         @animal = Animal.find(params[:id])
@@ -31,12 +27,12 @@ class AnimalsController < ApplicationController
         # Parameters: {"authenticity_token"=>"[FILTERED]", "animal"=>{"name"=>"Peter rabbit", "deceased"=>"0", "exhibit_id"=>"2", "exhibit_attributes"=>{"name"=>""}}, "commit"=>"Update Animal", "id"=>"1"}
         @animal = Animal.find(params[:id])
       
-        puts animal_params
         @animal.update(animal_params)
-        if @animal.errors.messages != {}
-          render :edit
-        else
+        if @animal.valid?
           redirect_to @animal
+          
+        else
+          render :edit
         end
       end
     

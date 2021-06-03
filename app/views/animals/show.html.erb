@@ -1,24 +1,15 @@
 <h2><%= @animal.name %></h2> 
-<%= link_to "edit", edit_animal_path%>
-Status: <%=  @animal.deceased ? "Deceased" : "Alive" %><br>
-Exhibit: <%= @animal.exhibit.name %>
+<h4><%= link_to "edit", edit_animal_path %></h4>
+<p>Status: <%=  @animal.deceased ? "Deceased" : "Alive" %><br>
+Exhibit: <%= @animal.exhibit.name %></p>
+
+<p><%= link_to "perform health checkup", new_animal_health_checkup_path(@animal) %></p>
+<p><%= link_to "See Health Record", animal_health_checkups_path(@animal) %></p>
+  
 
 
-  <%= render "health_checkups/form", health_checkup: HealthCheckup.new %>
 
 
-
-<% if HealthCheckup.any? %>
-<p>Previous checkup </p>
-<% @animal.health_checkups.each do |c| %>
-    <li><p> <%= c.comments %> </p>
-    by <%= c.user.name %> on <%= c.date.to_formatted_s(:long) %>
-      <% if current_user == c.user %>
-        <%= link_to "delete", c, method: :delete %>
-      <% end %>
-    </li>
-  <% end %>
-<% end %>
 
 
 

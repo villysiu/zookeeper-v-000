@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :health_checkups
-  resources :animals
+  
+  resources :animals, shallow: true do
+    resources :health_checkups
+  end
   resources :exhibits
 
  # devise_for :users

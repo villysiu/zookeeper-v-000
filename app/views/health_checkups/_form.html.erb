@@ -1,8 +1,19 @@
-<%= form_for health_checkup do |f| %>
-    <%= f.hidden_field :animal_id, :value => @animal.id %>
+ <%= form_with(model: [@animal, @health_checkup], local: true) do |f| %>
+
+  <% if @health_checkup.errors.any? %>
+  <div id="error_explanation">
+      <p><%= pluralize(@health_checkup.errors.count, "error") %> prohibited this health_checkup from being saved:</p>
+      
+      <% @health_checkup.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+  </div>
+  <% end %>
+
+
     <%= f.hidden_field :user_id,:value => current_user.id %>
     <%= f.hidden_field :date, :value => Date.today %>
-    <%= f.label "Comment:" %>
+    <%= f.label "Checkup Comment:" %>
     <%= f.text_area :comments, autofocus: true, placeholder: "Leave your comment" %>
     <%= f.submit "Send" %>
 
