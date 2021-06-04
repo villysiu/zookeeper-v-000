@@ -17,13 +17,7 @@ class Animal < ApplicationRecord
             self.exhibit = exhibit 
         else
             e = Exhibit.find_case_insensitive_exhibit(exhibit_attribute[:name])
-            if e.valid?
-                self.exhibit = e
-            else
-                exhibit.errors.full_messages.each do |message| 
-                    puts message 
-                end
-             end 
+            self.exhibit = e if e.valid?
         end
     end
 

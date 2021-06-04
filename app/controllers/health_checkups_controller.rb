@@ -1,6 +1,7 @@
 class HealthCheckupsController < ApplicationController
   before_action :get_animal, only: [:new, :create, :index]
   before_action :set_health_checkup, only: [:edit, :update, :destroy]
+
   def index
     @health_checkups = @animal.health_checkups
   end
@@ -32,7 +33,7 @@ class HealthCheckupsController < ApplicationController
   end
     def destroy
   
-      health_checkup = HealthCheckup.find(params[:id])
+     # health_checkup = HealthCheckup.find(params[:id])
       a = health_checkup.animal
       health_checkup.destroy
       redirect_to animal_health_checkups_path(a)
