@@ -12,11 +12,12 @@ class AnimalsController < ApplicationController
     end
     def create
         @animal = Animal.create(animal_params)
-        @animal.valid?  
-          redirect_to @animal, notice: 'Animal was successfully created.'
+        if @animal.valid?  
+          redirect_to @animal, notice: 'Animal was successfully created.' 
         else
           render :new
         end
+  
         
     end
     def edit
