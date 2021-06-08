@@ -34,6 +34,10 @@ class AnimalsController < ApplicationController
           render :edit
         end
       end
+      def order
+        @animals = Animal.order(:name)   
+        render :index
+      end
     
     private
     def animal_params

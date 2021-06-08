@@ -11,7 +11,7 @@ class HealthCheckupsController < ApplicationController
   def create
     @health_checkup = @animal.health_checkups.build(health_checkup_params)
     
-    if @health_checkup.save && @health_checkup.valid?
+    if @health_checkup.save
       redirect_to animal_health_checkups_path(@animal), notice: 'Checkup was successfully created.'
     else
       render :new
@@ -33,9 +33,9 @@ class HealthCheckupsController < ApplicationController
   end
     def destroy
   
-     # health_checkup = HealthCheckup.find(params[:id])
-      a = health_checkup.animal
-      health_checkup.destroy
+     
+      a = @health_checkup.animal
+      @health_checkup.destroy
       redirect_to animal_health_checkups_path(a)
     end
     private

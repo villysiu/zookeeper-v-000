@@ -4,7 +4,7 @@ class Animal < ApplicationRecord
     belongs_to :exhibit
 
     scope :alive, -> { where(deceased: false) }
-    scope :deceased, -> { where(deceased: true) }
+    scope :dead, -> { where(deceased: true) }
  
     validates :name, presence: true, uniqueness:  { case_sensitive: false }
 
